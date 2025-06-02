@@ -1,0 +1,32 @@
+CRUD 
+
+delete - deleta um registro da tabela; 
+sintaxe: 
+detele from tabela aluno
+*se nao houver uma condicao especifica ele apaga tudo
+
+se precisar ser mais específico: 
+delete from tabela aluno where RM = 123456 
+
+ou
+
+delete from tabela funcionario where status = inativo
+*vai deletar TODOS os funcionarios inativos
+
+Read - é como um select (mostra a tabela, seja algo especifico seja ela toda)
+
+sintaxe:
+select * from tabela - vai mostrar todos os campos
+ex:
+select nome, idade from tabela aluno - vai mostrar o nome e a idade do aluno
+
+order by - ordena os dados 
+asc - ascendente
+desc - descendente 
+
+DDL - estrutura
+DML - dados
+
+álias- apelido
+
+where- selecionar alguma 

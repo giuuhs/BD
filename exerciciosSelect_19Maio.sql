@@ -1,0 +1,39 @@
+use nosso_sistema;
+-- ==========================================
+-- BANCO DE DADOS - NOSSO SISTEMA
+-- PROFESSORA: ELIANE MARION
+-- BANCO DE DADOS: MICROSOFT SQL SERVER
+-- ==========================================
+
+-- ==========================================
+-- COMANDOS DE CONSULTA
+-- ==========================================
+
+--exibir o conteúdo da tabela vendedor.
+--exibir o nome dos vendedores e suas comissões.
+--mostrar os vendedores com seu nome e salário do menor salário cadastrado para o maior salário cadastrado.
+--criar um relatório que mostre os pedidos cadastrados na tabela pedido.
+--selecionar os produtos dos pedidos já realizados por ordem de pedido e por código do produto.
+--mostrar pedido por ordem de vendedor
+--mostrar os produtos com descrição e preço.
+--exibir o nome dos vendedores e sua comissão em ordem decrescente de comissão.
+--Exibir uma projeção de salário dos vendedores com um acréscimo de 15% e um desconto de 5%.
+--Montar um relatório que exiba o novo salário do vendedores de classe C com bônus de R$150,00
+
+--Criar um relatório que mostre os clientes que moram no estado de São Paulo.
+--Exibir os clientes que não moram no estado de São Paulo
+--Quem são os vendedores de comissão B? Exiba seu nome e comissão em ordem crescente por nome.
+--Mostre os produtos com preço superior a R$0,70.
+
+
+-- Liste os pedidos de código 98 a 119.
+
+--Exibir os clientes que não moram no estado de São Paulo
+
+-- Exibir o nome dos clientes e o estado onde moram, desde que morem em SP e RJ.
+
+--Exibir o código do cliente a partir do valor 200, seu nome, seu estado desde que morem em Mg e Ba.
+
+--Criar um relatório que mostre o nome do vendedor, seu salário, mas que sejam de comissão A e B
+
+--Criar um relatório que mostre os pedidos de código superior a 100 e até 150 (inclusive), dos clientes de código 260 e vendedor de código 11.
