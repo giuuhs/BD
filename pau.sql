@@ -29,7 +29,7 @@ foreign key (cod_venid) references vendedor (cod_ven),
 );
 
 create table produto(
-cod_prod numeric (4) foreign key,
+cod_prod numeric (4) primary key,
 unidade varchar (3),
 descricao varchar (20),
 val_unit numeric (8,2),
@@ -40,7 +40,7 @@ quant numeric (8,2),
 num_pedidoid numeric (4),
 cod_prodid numeric (4),
 foreign key (num_pedidoid) references pedido(num_pedido),
-foreign key (cod_prodid) references produto (cod_prod),
+foreign key (cod_prodid) references produto(cod_prod),
 );
 
 INSERT INTO cliente(cod_clie, nome_clie, endereco, cidade, cep, uf, cnpj, ie) VALUES
@@ -121,3 +121,22 @@ insert into item_pedido (num_pedidoid, cod_prodid, quant) values
 (189, 78, 45),
 (143, 31, 20),
 (143, 78, 10);
+
+-- 1 --
+SELECT * FROM vendedor;
+
+-- 2 --
+SELECT nome_ven, comissao FROM vendedor;
+
+-- 3 --
+SELECT nome_ven, salario_fixo FROM vendedor
+ORDER BY salario_fixo;
+
+-- 4 --
+SELECT * FROM pedido;
+
+-- 5 --
+--SELECT num_pedidoid, cod_prodid FROM item_pedido ORDER BY 
+
+-- 6 --
+SELECT * FROM pedido ORDER BY cod_venid;
