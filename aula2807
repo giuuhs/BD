@@ -1,0 +1,106 @@
+CREATE DATABASE biblioteca;
+USE biblioteca;
+
+-- Tabela de Autores
+CREATE TABLE autores (
+    id_autor INT PRIMARY KEY IDENTITY,
+    nome VARCHAR(100) NOT NULL,
+    nacionalidade VARCHAR(50),
+    data_nascimento DATE,
+    email VARCHAR(100)
+);
+
+-- Tabela de Livros
+CREATE TABLE livros (
+    id_livro INT PRIMARY KEY IDENTITY,
+    titulo VARCHAR(150) NOT NULL,
+    id_autor INT NOT NULL,
+    ano_publicacao INT,
+    genero VARCHAR(50),
+    FOREIGN KEY (id_autor) REFERENCES autores(id_autor)
+);
+
+-- Tabela de Membros
+CREATE TABLE membros (
+    id_membro INT PRIMARY KEY IDENTITY,
+    nome VARCHAR(100) NOT NULL,
+    telefone VARCHAR(15),
+    endereco VARCHAR(150),
+    email VARCHAR(100)
+);
+
+-- Tabela de Empréstimos
+CREATE TABLE emprestimos (
+    id_emprestimo INT PRIMARY KEY IDENTITY,
+    id_membro INT NOT NULL,
+    id_livro INT NOT NULL,
+    data_emprestimo DATE NOT NULL,
+    data_devolucao DATE,
+    FOREIGN KEY (id_membro) REFERENCES membros(id_membro),
+    FOREIGN KEY (id_livro) REFERENCES livros(id_livro)
+);
+
+-- Tabela de Funcionários
+CREATE TABLE funcionarios (
+    id_funcionario INT PRIMARY KEY IDENTITY,
+    nome VARCHAR(100) NOT NULL,
+    cargo VARCHAR(50),
+    data_admissao DATE,
+    email VARCHAR(100)
+);
+
+-- Autores
+INSERT INTO autores (nome, nacionalidade, data_nascimento, email) VALUES
+('Machado de Assis', 'Brasileiro', '1839-06-21', 'machado@literatura.com'),
+('José Saramago', 'Português', '1922-11-16', 'saramago@literatura.com'),
+('J.K. Rowling', 'Britânica', '1965-07-31', 'rowling@hogwarts.com'),
+('George Orwell', 'Britânico', '1903-06-25', NULL),
+('Clarice Lispector', 'Brasileira', '1920-12-10', 'clarice@literatura.com');
+
+-- Livros
+INSERT INTO livros (titulo, id_autor, ano_publicacao, genero) VALUES
+('Dom Casmurro', 1, 1899, 'Romance'),
+('Ensaio sobre a Cegueira', 2, 1995, 'Ficção'),
+('Harry Potter e a Pedra Filosofal', 3, 1997, 'Fantasia'),
+('1984', 4, 1949, 'Distopia'),
+('A Hora da Estrela', 5, 1977, 'Romance');
+
+-- Membros
+INSERT INTO membros (nome, telefone, endereco, email) VALUES
+('Ana Silva', '1199887766', 'Rua A, 123', 'ana@gmail.com'),
+('Pedro Santos', '21988776655', 'Av. Central, 500', 'pedro@yahoo.com'),
+('Carla Souza', NULL, 'Rua B, 45', 'carla@hotmail.com'),
+('Lucas Lima', '31988776699', 'Rua C, 10', NULL),
+('Fernanda Costa', '11999887722', 'Av. Paulista, 1000', 'fernanda@gmail.com');
+
+-- Empréstimos
+INSERT INTO emprestimos (id_membro, id_livro, data_emprestimo, data_devolucao) VALUES
+(1, 1, '2025-07-01', '2025-07-15'),
+(2, 3, '2025-07-05', NULL),
+(3, 2, '2025-07-10', '2025-07-20'),
+(4, 5, '2025-07-15', NULL),
+(5, 4, '2025-07-18', '2025-07-28');
+
+-- Funcionários
+INSERT INTO funcionarios (nome, cargo, data_admissao, email) VALUES
+('João Almeida', 'Bibliotecário', '2020-01-10', 'joao@biblioteca.com'),
+('Maria Oliveira', 'Atendente', '2021-03-15', 'maria@biblioteca.com'),
+('Rafael Gomes', 'Auxiliar', '2022-07-20', NULL),
+('Juliana Ferreira', 'Gerente', '2019-10-05', 'juliana@biblioteca.com'),
+('Bruno Costa', 'Atendente', '2023-05-12', 'bruno@biblioteca.com');
+
+-- 1. Liste os gêneros de livros disponíveis sem repetição.
+select distinct genero from livros;
+-- 2. Liste os autores que não possuem e-mail cadastrado.
+select nome from autores where email is null;
+-- 3. Liste os membros que possuem e-mail cadastrado.
+select nome, email from membros where email is not null;
+-- 4. Liste a quantidade de livros por gênero.
+select genero, count(*) as quantidade from livros group by genero;
+-- 5. Liste o nome dos membros em letras maiúsculas.
+select UPPER(nome) from membros;
+-- 6. Liste os funcionários e há quantos anos foram admitidos.
+select nome, DATEDIFF(year, data_admissao, getdate()) as anos 
+from funcionarios
+-- 7. Liste todos os empréstimos que ainda não foram devolvidos.
+select * from emprestimos where data_devolucao is null;
